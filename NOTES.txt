@@ -1,0 +1,22 @@
+Step 1: Runtime Analysis
+(2)
+When the extraLargeArray is passed into doublerAppend and doublerInsert,
+it seems like doublerInsert is much slower than doublerAppend (at least 300 
+times slower).
+(4)
+Looking over the results, it seems like doublerAppend scales better. 
+Not only are all the runtimes faster than doublerInsert regardless of array
+size, but also the difference in runtime when the passed array becomes larger 
+is also much smaller. When comparing the runtimes using the smallest and largest
+arrays, doublerInsert takes over 500000 times as long to complete with the 
+largest array when compared to the smallest, and doublerAppend takes under
+1500 times as long when tested.
+(5)
+When looking over the functions we notice that doublerAppend uses the .push()
+method while doublerInsert uses the .unshift() method. I believe the reason that
+doublerInsert takes so much longer to complete than doublerAppend is because
+doublerInsert reassigns indexes to every element for each element added (due to
+elements being added to the beginning of the array every time), meanwhile
+doublerAppend will only have to assign an index to the new element every time it 
+is added since it is always added at the end.
+
